@@ -1,0 +1,49 @@
+{% extends "./masterpages/master.html" %}
+
+{% block body %}
+    <div id="home">
+        <h1>List of Employees</h1>
+
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">Company</th>
+                    <th scope="col">First Name</th>
+                    <th scope="col">Last Name</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for i in employees %}
+                <tr>
+                    <th>{{i.company_name}}</th>
+                    <th>{{i.first_name}}</th>
+                    <th>{{i.last_name}}</th>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <h1>List of Items</h1>
+
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">Category</th>
+                    <th scope="col">Item</th>
+                    <th scope="col">Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for i in items %}
+                <tr>
+                    <th>{{i.ItemCategoryName}}</th>
+                    <th>{{i.ItemName}}</th>
+                    <th>{{i.ItemPrice}}</th>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+
+    </div>
+{% endblock %}

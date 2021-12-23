@@ -1,0 +1,5 @@
+starlette
+uvicorn
+gunicorn
+requests
+jinja2
