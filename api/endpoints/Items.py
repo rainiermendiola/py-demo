@@ -11,5 +11,9 @@ class Items:
     
     def GetItems():
         data = da.GetData("PR_Items_Get", ["ItemCategoryId","ItemCategoryName","ItemId","ItemName","ItemPrice"])
-        print(data)
+        # print(data)
+        return data
+    def GetItemsById(id):
+        data = da.GetData(f"PR_Items_Get_ById {id}", ["ItemCategoryId","ItemCategoryName","ItemId","ItemName","ItemPrice"])
+        # print(data)
         return data

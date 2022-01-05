@@ -5,9 +5,7 @@
 
 # C extensions
 *.so
-*/new/
-*/node_modules
-*/pybak
+
 # Distribution / packaging
 .Python
 build/

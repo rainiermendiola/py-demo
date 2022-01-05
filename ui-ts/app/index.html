@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Demo</title>
+    <link href="./static/css/bootstrap.css" rel="stylesheet">
+    <script>var exports = {"__esModule": true};</script>
+    <script src="./scripts/itemsList.js"></script>
+</head>
+<body>
+    <div id="app"></div>
+
+    <script type="text/javascript">
+        // let items = new ItemsList()
+        let {GetItems} = new ItemsList()
+        result = GetItems()
+        console.log(result)
+    </script>
+</body>
+</html>

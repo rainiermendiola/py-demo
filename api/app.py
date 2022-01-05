@@ -29,12 +29,18 @@ def GetEmployees(request):
 def GetEmployeeById(request):
     id = request.path_params['id']
     # return JSONResponse(Employees.GetAll())
-    return JSONResponse(Employees.Get(id))
+    return JSONResponse(Employees.Get(id)[0])
 
 def GetItems(request):
     items = Items.GetItems()
     # print(items)
     return JSONResponse(items)
+
+def GetItemsById(request):
+    id = request.path_params['id']
+    items = Items.GetItemsById(id)
+    # print(items)
+    return JSONResponse(items[0])
 
     
 routes = [
@@ -42,7 +48,8 @@ routes = [
     Mount("/api", name="api", routes=[
         Route("/employees", GetEmployees, methods=["GET"]),
         Route("/employees/{id:int}", GetEmployeeById, methods=["GET"]),
-        Route("/items", GetItems, methods=["GET"])
+        Route("/items", GetItems, methods=["GET"]),
+        Route("/items/{id:int}", GetItemsById, methods=["GET"])
     ])
 ]
 
