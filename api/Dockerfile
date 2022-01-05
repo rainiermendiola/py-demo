@@ -21,7 +21,7 @@ RUN ACCEPT_EULA=Y apt-get install -y mssql-tools
 # RUN source ~/.bashrc
 # # optional: kerberos library for debian-slim distributions
 # sudo apt-get install -y libgssapi-krb5-2
-COPY requirements.txt requirements.txt
+COPY ./api/requirements.txt requirements.txt
 RUN python -m pip install --upgrade pip
 RUN python -m pip install -r ./requirements.txt
 COPY . .
