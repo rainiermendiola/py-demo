@@ -34,7 +34,6 @@ const Items: NextPage<{items: item[]}> = ({items}) =>{
 }
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-    console.log(`Server: ${server}`)
     const res = await fetch(`${server}/api/items`)
     // const items = await res.json()
     const items:item[] = await res.json()
