@@ -1,0 +1,16 @@
+version: "3.9"
+services:
+  backend:
+    build: ./api
+    ports:
+      - "5000:80"
+    networks:
+      default:
+        aliases:
+          - py-demo-api
+  frontend:
+    build: ./ui-next
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend

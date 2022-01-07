@@ -19,8 +19,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     return {
         props: {
             employee
-        },
-        revalidate: 10
+        }
     }
 }
 

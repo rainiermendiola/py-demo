@@ -24,10 +24,10 @@
 # For more information on the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
 # For more samples to get started with GitHub Action workflows to deploy to Azure: https://github.com/Azure/actions-workflow-samples
 
-name: API - Build and deploy a container to an Azure Web App
+name: Py-Next-Compose - Build and Deploy to Azure
 
 env:
-  AZURE_WEBAPP_NAME: py-demo-api  # set this to the name of your Azure Web App
+  AZURE_WEBAPP_NAME: py-demo  # set this to the name of your Azure Web App
 
 on:
   push:
@@ -60,7 +60,7 @@ jobs:
         with:
           push: true
           tags: ghcr.io/${{ env.REPO }}:${{ github.sha }}
-          file: ./api/Dockerfile
+          file: ./docker-compose.yml
 
   deploy:
     runs-on: ubuntu-latest
