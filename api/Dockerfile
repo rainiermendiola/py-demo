@@ -23,7 +23,7 @@ RUN ACCEPT_EULA=Y apt-get install -y mssql-tools
 # sudo apt-get install -y libgssapi-krb5-2
 COPY ./api/requirements.txt ./api/requirements.txt
 RUN python -m pip install --upgrade pip
-RUN python -m pip install -r ./requirements.txt
+RUN python -m pip install -r ./api/requirements.txt
 COPY ./api ./api
 EXPOSE 80
 # CMD [ "uvicorn", "main:app", "--host", "0.0.0.0", "--port", "80" ]
