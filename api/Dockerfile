@@ -21,10 +21,11 @@ RUN ACCEPT_EULA=Y apt-get install -y mssql-tools
 # RUN source ~/.bashrc
 # # optional: kerberos library for debian-slim distributions
 # sudo apt-get install -y libgssapi-krb5-2
-COPY ./api/requirements.txt ./api/requirements.txt
+WORKDIR /api
+COPY ./api/requirements.txt requirements.txt
 RUN python -m pip install --upgrade pip
-RUN python -m pip install -r ./api/requirements.txt
-COPY ./api ./api
+RUN python -m pip install -r requirements.txt
+COPY ./api .
 EXPOSE 80
 # CMD [ "uvicorn", "main:app", "--host", "0.0.0.0", "--port", "80" ]
 CMD [ "gunicorn", "-k", "uvicorn.workers.UvicornWorker", "-b", "0.0.0.0:80", "--reload", "app:app" ]
