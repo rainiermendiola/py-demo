@@ -1,8 +1,10 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
+import { useState } from 'react'
 import styles from '../styles/Home.module.css'
 const Home: NextPage = () => {
+  const [a,setA] = useState<string>()
   return (
       <div className={styles.container}>
         <Head>
@@ -12,6 +14,9 @@ const Home: NextPage = () => {
         </Head>
 
         <h1 className={styles.title}>Hello! Welcome to Next-Demo!</h1>
+        <input type="text" value={a} onChange={e => setA(e.target.value)} />
+        <div>Value of a: {a}</div>
+
       </div>
   )
 }

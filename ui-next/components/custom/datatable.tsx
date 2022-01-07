@@ -7,7 +7,8 @@ export const DataTable: NextPage<{
         title:string,
         header:DataTableHeader[],
         items:any[],
-        searchField?:string}> = (context) => {
+        searchField?:string
+    }> = (context) => {
     const [searchText, setSearchText] = useState("")
     const searchField = context.searchField ? context.searchField : null
     const searchFieldHidden = searchField ? false : true
@@ -58,11 +59,22 @@ export const DataTable: NextPage<{
             )
         }
     }
+
+    let title=null
+    let child = null
+    if(context.children){
+        if(!Array.isArray(context.children)){
+            child = [context.children]
+        } else {
+            child = context.children
+        }
+        title = child.find(el => el.type === Title).props.children
+    }
     
     return(
         <>
             <div>
-                <h1 className='text-2xl'>{context.title}</h1>
+                {title ? title : <h1 className='text-2xl'>{context.title}</h1>}
             </div>
             <div className="py-3">
                 <Input
@@ -95,5 +107,9 @@ export interface DataTableHeader{
     value: string
     url?: string
 }
+
+
+const Title = () => null
+DataTable.Title = Title
 
 export default DataTable

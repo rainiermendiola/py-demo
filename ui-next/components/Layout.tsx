@@ -1,6 +1,7 @@
+import { NextPage } from 'next'
 import { NavBar, MenuItem } from './custom/navbar'
 
-const Layout = ({children} : {children: React.ReactNode}) => {
+const Layout: NextPage = (context) => {
     const Menu:MenuItem[] = [
         {href: '/', name: 'Home'},
         {href: '/items', name: 'Items'},
@@ -10,7 +11,7 @@ const Layout = ({children} : {children: React.ReactNode}) => {
     return (
         <>
             <NavBar Menu={Menu}/>
-            <div className='container px-4'>{children}</div>
+            <div className='container px-4'>{context.children}</div>
         </>
     )
 }

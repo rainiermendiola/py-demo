@@ -22,7 +22,13 @@ const Items: NextPage<{items: item[]}> = ({items}) =>{
                 title="Items"
                 header={headers}
                 items={items}
-                searchField='ItemName'/>
+                searchField='ItemName'>
+                    <DataTable.Title>
+                        <h1 className='text-2xl'>All Items</h1>
+                    </DataTable.Title>
+                    {/* {{titles: <h1 className='text-4xl'>This is the Title</h1>}} */}
+            </DataTable>
+            
         </>
     )
 }
