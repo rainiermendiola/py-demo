@@ -1,4 +1,4 @@
-import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
+import { GetServerSideProps, GetStaticPaths, GetStaticProps, NextPage } from 'next'
 import { server } from '../../config'
 import {employee} from '../../types/employees'
 import Link from 'next/link'
@@ -11,7 +11,7 @@ const EmployeesById: NextPage<{employee:employee}> = (employee) => {
     </>
 }
 
-export const getStaticProps: GetStaticProps = async (context) => {
+export const getServerSideProps: GetServerSideProps = async (context) => {
 
     const res = await fetch(`${server}/api/employees/${context.params!.id}`)
     const employee:employee = await res.json()
@@ -24,17 +24,17 @@ export const getStaticProps: GetStaticProps = async (context) => {
     }
 }
 
-export const getStaticPaths: GetStaticPaths = async () => {
-    const res = await fetch(`${server}/api/employees/`)
-    const employees:employee[] = await res.json()
+// export const getStaticPaths: GetStaticPaths = async () => {
+//     const res = await fetch(`${server}/api/employees/`)
+//     const employees:employee[] = await res.json()
 
-    const ids = employees.map(m => m.id)
-    const paths = ids.map(id => ({params: {id: id.toString()}}))
+//     const ids = employees.map(m => m.id)
+//     const paths = ids.map(id => ({params: {id: id.toString()}}))
 
-    return {
-        paths,
-        fallback: false
-    }
-}
+//     return {
+//         paths,
+//         fallback: false
+//     }
+// }
 
 export default EmployeesById

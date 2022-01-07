@@ -1,5 +1,5 @@
 import {server} from '../../config'
-import type { GetStaticProps, NextPage } from 'next'
+import type { GetServerSideProps, GetStaticProps, NextPage } from 'next'
 import Link from 'next/link'
 import {item} from '../../types/items'
 import Head from 'next/head'
@@ -23,9 +23,9 @@ const Items: NextPage<{items: item[]}> = ({items}) =>{
                 header={headers}
                 items={items}
                 searchField='ItemName'>
-                    <DataTable.Title>
+                    {/* <DataTable.Title>
                         <h1 className='text-2xl'>All Items</h1>
-                    </DataTable.Title>
+                    </DataTable.Title> */}
                     {/* {{titles: <h1 className='text-4xl'>This is the Title</h1>}} */}
             </DataTable>
             
@@ -33,7 +33,7 @@ const Items: NextPage<{items: item[]}> = ({items}) =>{
     )
 }
 
-export const getStaticProps: GetStaticProps = async (context) => {
+export const getServerSideProps: GetServerSideProps = async (context) => {
     const res = await fetch(`${server}/api/items`)
     // const items = await res.json()
     const items:item[] = await res.json()

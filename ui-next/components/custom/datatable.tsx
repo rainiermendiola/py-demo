@@ -60,21 +60,22 @@ export const DataTable: NextPage<{
         }
     }
 
-    let title=null
-    let child = null
-    if(context.children){
-        if(!Array.isArray(context.children)){
-            child = [context.children]
-        } else {
-            child = context.children
-        }
-        title = child.find(el => el.type === Title).props.children
-    }
+    // let title=null
+    // let child = null
+    // if(context.children){
+    //     if(!Array.isArray(context.children)){
+    //         child = [context.children]
+    //     } else {
+    //         child = context.children
+    //     }
+    //     title = child.find(el => el.type === Title).props.children
+    // }
     
     return(
         <>
             <div>
-                {title ? title : <h1 className='text-2xl'>{context.title}</h1>}
+                <h1 className='text-2xl'>{context.title}</h1>
+                {/* {title ? title : <h1 className='text-2xl'>{context.title}</h1>} */}
             </div>
             <div className="py-3">
                 <Input
@@ -109,7 +110,7 @@ export interface DataTableHeader{
 }
 
 
-const Title = () => null
-DataTable.Title = Title
+// const Title = () => null
+// DataTable.Title = Title
 
 export default DataTable

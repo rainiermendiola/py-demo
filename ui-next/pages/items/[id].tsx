@@ -1,4 +1,4 @@
-import { GetStaticPaths, GetStaticProps, NextPage } from "next"
+import { GetServerSideProps, GetStaticPaths, GetStaticProps, NextPage } from "next"
 import { server } from "../../config"
 import {item} from '../../types/items'
 import Link from 'next/link'
@@ -18,7 +18,7 @@ const ItemsById: NextPage<{item:item}> = (context) => {
     )
 }
 
-export const getStaticProps: GetStaticProps = async (context) => {
+export const getServerSideProps: GetServerSideProps = async (context) => {
     const res = await fetch(`${server}/api/items/${context.params?.id}`)
     const item:item = await res.json()
     // console.log(item)
@@ -31,15 +31,15 @@ export const getStaticProps: GetStaticProps = async (context) => {
     }
 }
 
-export const getStaticPaths: GetStaticPaths = async (context) => {
-    const res = await fetch(`${server}/api/items`)
-    const items:item[] = await res.json()
-    const ids = items.map(i=>i.ItemId)
-    const paths = ids.map(i=>({params:{id:i.toString()}}))
-    return {
-        paths,
-        fallback: false
-    }
-}
+// export const getStaticPaths: GetStaticPaths = async (context) => {
+//     const res = await fetch(`${server}/api/items`)
+//     const items:item[] = await res.json()
+//     const ids = items.map(i=>i.ItemId)
+//     const paths = ids.map(i=>({params:{id:i.toString()}}))
+//     return {
+//         paths,
+//         fallback: false
+//     }
+// }
 
 export default ItemsById

@@ -15,7 +15,7 @@ const Home: NextPage = () => {
 
         <h1 className={styles.title}>Hello! Welcome to Next-Demo!</h1>
         <input type="text" value={a} onChange={e => setA(e.target.value)} />
-        <div>Value of a: {a}</div>
+        <div>Value of textbox: {a}</div>
 
       </div>
   )

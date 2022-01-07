@@ -24,7 +24,7 @@ RUN ACCEPT_EULA=Y apt-get install -y mssql-tools
 COPY ./api/requirements.txt requirements.txt
 RUN python -m pip install --upgrade pip
 RUN python -m pip install -r ./requirements.txt
-COPY . .
+COPY ./api .
 EXPOSE 80
 # CMD [ "uvicorn", "main:app", "--host", "0.0.0.0", "--port", "80" ]
 CMD [ "gunicorn", "-k", "uvicorn.workers.UvicornWorker", "-b", "0.0.0.0:80", "--reload", "app:app" ]

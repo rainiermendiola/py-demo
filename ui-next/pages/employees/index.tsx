@@ -1,5 +1,5 @@
 import {server} from '../../config'
-import type { GetStaticProps, NextPage } from 'next'
+import type { GetServerSideProps, GetStaticProps, NextPage } from 'next'
 import Link from 'next/link'
 import {employee} from '../../types/employees'
 import { DataTableHeader, DataTable } from '../../components/custom/datatable'
@@ -24,7 +24,7 @@ const Employees: NextPage<{employees: employee[]}> = (context) =>{
     )
 }
 
-export const getStaticProps: GetStaticProps = async (context) => {
+export const getServerSideProps: GetServerSideProps = async (context) => {
     const res = await fetch(`${server}/api/employees`)
     // const items = await res.json()
     const employees:employee[] = await res.json()
