@@ -27,7 +27,7 @@
 name: py-demo-api - Build and Deploy to Azure
 
 env:
-  AZURE_WEBAPP_NAME: py-demo-api  # set this to the name of your Azure Web App
+  AZURE_WEBAPP_NAME: py-demo-apiv2  # set this to the name of your Azure Web App
 
 on:
   push:
