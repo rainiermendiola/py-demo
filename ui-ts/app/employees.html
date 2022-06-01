@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>var exports = {"__esModule": true};</script>
+    <script src="scripts/services/employeesSvc.js"></script>
+    <title>Employees</title>
+</head>
+<body>
+    <button onclick="load()">Get data</button>
+    <div>
+        <ul id="data"></ul>
+    </div>
+    <script type="text/javascript">
+        let {data, GetData} = new employeesSvc()
+
+        console.log("'data' on load:", data)
+        function load(){
+            data = GetData()
+            console.log("'data' after calling GetData():", data)
+            data.forEach(i => {
+                const node = document.createElement("li")
+                const textnode = document.createTextNode(`${i.firstName} ${i.lastName}`)
+                node.appendChild(textnode)
+                document.getElementById("data").appendChild(node)
+            })
+        }
+    </script>
+</body>
+</html>

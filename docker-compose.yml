@@ -1,6 +1,6 @@
 version: "3.9"
 services:
-  backend:
+  api:
     build: ./api
     ports:
       - "5000:80"
@@ -8,9 +8,9 @@ services:
       default:
         aliases:
           - py-demo-api
-  frontend:
+  ui:
     build: ./ui-next
     ports:
       - "3000:3000"
     depends_on:
-      - backend
+      - api
