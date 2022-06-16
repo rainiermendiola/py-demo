@@ -10,7 +10,7 @@ class DataAccess:
     def __init__(self, connectionString:str):
         self.connectionString = connectionString
 
-    def GetData(self, cmd:str, cols:list) -> list:
+    def GetData(self, cmd:str, cols:list, *params:str) -> list:
         """
         Gets data from the database.\n\n
         Parameters:\n
@@ -22,7 +22,11 @@ class DataAccess:
        
         with pyodbc.connect(self.connectionString) as conn:
             with conn.cursor() as cursor:
-                cursor.execute(cmd)
+                if params != None:
+                    print(params)
+                    cursor.execute(cmd,params)
+                else:
+                    cursor.execute(cmd)
                 # print(cursor.description)
                 # return cursor
                 row = cursor.fetchone()
@@ -43,7 +47,7 @@ class DataAccess:
                 
                 return resultList
 
-    def PostData(self, cmd:str) -> int:
+    def PostData(self, cmd:str, *params:str) -> int:
         """
         Posts data to the database.\n\n
         Parameters:\n
@@ -57,7 +61,10 @@ class DataAccess:
         
         with pyodbc.connect(self.connectionString) as conn:
             with conn.cursor() as cursor:
-                count = cursor.execute(cmd).rowcount
+                if params != None:
+                    count = cursor.execute(cmd, params).rowcount
+                else:
+                    count = cursor.execute(cmd).rowcount
                 conn.commit()
                 # print('Rows inserted: ' + str(count))
                 return count

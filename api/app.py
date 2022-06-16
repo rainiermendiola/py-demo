@@ -2,7 +2,8 @@ from starlette import middleware
 from starlette.applications import Starlette
 # from starlette.middleware import httpsredirect
 from starlette.routing import Route, Mount
-from starlette.responses import JSONResponse
+from starlette.requests import Request
+from starlette.responses import JSONResponse, Response
 from starlette.middleware import Middleware
 from starlette.middleware.cors import CORSMiddleware
 from starlette.config import Config
@@ -31,16 +32,27 @@ def GetEmployeeById(request):
     # return JSONResponse(Employees.GetAll())
     return JSONResponse(Employees.Get(id)[0])
 
-def GetItems(request):
-    items = Items.GetItems()
-    # print(items)
-    return JSONResponse(items)
+async def ItemsHandler(request):
+    # request = Request(scope, receive)
+    if request.method == 'GET':
+        items = Items.GetItems()
+        # print(items)
+        return JSONResponse(items)
+    elif request.method == 'POST':
+        body = await request.json()
+        Items.AddItem(body)
+        return Response(status_code=200)
+        
+
+
 
 def GetItemsById(request):
+    print(request.path_params)
     id = request.path_params['id']
     items = Items.GetItemsById(id)
     # print(items)
     return JSONResponse(items[0])
+
 
     
 routes = [
@@ -48,8 +60,8 @@ routes = [
     Mount("/api", name="api", routes=[
         Route("/employees", GetEmployees, methods=["GET"]),
         Route("/employees/{id:int}", GetEmployeeById, methods=["GET"]),
-        Route("/items", GetItems, methods=["GET"]),
-        Route("/items/{id:int}", GetItemsById, methods=["GET"])
+        Route("/items", ItemsHandler, methods=["GET", "POST"]),
+        Route("/items/{id:int}", GetItemsById, methods=["GET"]),
     ])
 ]
 

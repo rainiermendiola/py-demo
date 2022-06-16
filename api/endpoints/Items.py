@@ -14,6 +14,13 @@ class Items:
         # print(data)
         return data
     def GetItemsById(id):
-        data = da.GetData(f"PR_Items_Get_ById {id}", ["ItemCategoryId","ItemCategoryName","ItemId","ItemName","ItemPrice"])
+        data = da.GetData(f"PR_Items_Get_ById ?", ["ItemCategoryId","ItemCategoryName","ItemId","ItemName","ItemPrice"], id)
         # print(data)
         return data
+    def AddItem(body):
+        ItemCategoryId = body['ItemCategoryId']
+        Name = body['Name']
+        Price = body['Price']
+        result = da.PostData(f"[PR_Items_Insert] ?, ?, ?", ItemCategoryId, Name, Price)
+        # print(data)
+        return 1
